@@ -1,0 +1,193 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Resources/Mockups/UI/Background.png" type="Texture" id=1]
+[ext_resource path="res://Resources/Mockups/UI/BTN_Play_up.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Mockups/UI/BTN_Play_down.png" type="Texture" id=3]
+[ext_resource path="res://Resources/Mockups/UI/BTN_Toilet_up.png" type="Texture" id=4]
+[ext_resource path="res://Resources/Mockups/UI/BTN_Thirst_up.png" type="Texture" id=5]
+[ext_resource path="res://Resources/Mockups/UI/BTN_Thirst_down.png" type="Texture" id=6]
+[ext_resource path="res://Resources/Mockups/UI/BTN_Hunger_down.png" type="Texture" id=7]
+[ext_resource path="res://Resources/Mockups/UI/BTN_Teach_up.png" type="Texture" id=8]
+[ext_resource path="res://Resources/Mockups/UI/BTN_Pet_up.png" type="Texture" id=9]
+[ext_resource path="res://Resources/Mockups/UI/BTN_Toilet_down.png" type="Texture" id=10]
+[ext_resource path="res://Resources/Mockups/UI/BTN_Pet_down.png" type="Texture" id=11]
+[ext_resource path="res://Resources/Mockups/UI/BTN_Hunger_up.png" type="Texture" id=12]
+[ext_resource path="res://Resources/Mockups/UI/BTN_Teach_down.png" type="Texture" id=13]
+[ext_resource path="res://Resources/Mockups/UI/ui_bar_green.png" type="Texture" id=14]
+[ext_resource path="res://Resources/Mockups/CatAnimations/Idle/Kitty_idle_2.png" type="Texture" id=15]
+[ext_resource path="res://Resources/Mockups/CatAnimations/Idle/Kitty_idle_3.png" type="Texture" id=16]
+[ext_resource path="res://Resources/Mockups/CatAnimations/Idle/Kitty_idle_1.png" type="Texture" id=17]
+[ext_resource path="res://Resources/Mockups/CatAnimations/Idle/Kitty_idle_5.png" type="Texture" id=18]
+[ext_resource path="res://Resources/Mockups/CatAnimations/Idle/Kitty_idle_6.png" type="Texture" id=19]
+[ext_resource path="res://Resources/Mockups/CatAnimations/Idle/Kitty_idle_4.png" type="Texture" id=20]
+[ext_resource path="res://Resources/Mockups/CatAnimations/Idle/Kitty_idle_7.png" type="Texture" id=21]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 17 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 20 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[node name="Main" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="TextureRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.473343
+margin_top = 0.315559
+margin_right = 255.527
+margin_bottom = 144.316
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BAR_Thirst" type="TextureProgress" parent="Control/Background"]
+margin_left = 0.342915
+margin_top = 35.7066
+margin_right = 48.3429
+margin_bottom = 47.7066
+max_value = 48.0
+value = 48.0
+texture_progress = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BAR_Hunger" type="TextureProgress" parent="Control/Background"]
+margin_left = 0.139008
+margin_top = 85.0521
+margin_right = 48.139
+margin_bottom = 97.0521
+max_value = 48.0
+value = 48.0
+texture_progress = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BAR_Toilet" type="TextureProgress" parent="Control/Background"]
+margin_left = 0.139008
+margin_top = 131.951
+margin_right = 48.139
+margin_bottom = 143.951
+max_value = 48.0
+value = 48.0
+texture_progress = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BAR_Teach" type="TextureProgress" parent="Control/Background"]
+margin_left = 207.92
+margin_top = 37.5418
+margin_right = 255.92
+margin_bottom = 49.5418
+max_value = 48.0
+value = 48.0
+texture_progress = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BAR_Pet" type="TextureProgress" parent="Control/Background"]
+margin_left = 208.328
+margin_top = 85.0521
+margin_right = 256.328
+margin_bottom = 97.0521
+max_value = 48.0
+value = 48.0
+texture_progress = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BAR_Play" type="TextureProgress" parent="Control/Background"]
+margin_left = 208.428
+margin_top = 131.983
+margin_right = 256.428
+margin_bottom = 143.983
+max_value = 48.0
+value = 48.0
+texture_progress = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BTN_Thist" type="TextureButton" parent="Control/Background"]
+margin_left = -0.157784
+margin_top = -0.157776
+margin_right = 47.8422
+margin_bottom = 47.8422
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BTN_Hunger" type="TextureButton" parent="Control/Background"]
+margin_left = 0.451874
+margin_top = 48.3502
+margin_right = 48.4519
+margin_bottom = 96.3502
+texture_normal = ExtResource( 12 )
+texture_pressed = ExtResource( 7 )
+
+[node name="BTN_Toilet" type="TextureButton" parent="Control/Background"]
+margin_left = 0.225929
+margin_top = 95.5707
+margin_right = 48.2259
+margin_bottom = 143.571
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BTN_Teach" type="TextureButton" parent="Control/Background"]
+margin_left = 208.313
+margin_top = 0.225933
+margin_right = 256.313
+margin_bottom = 48.2259
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BTN_Pet" type="TextureButton" parent="Control/Background"]
+margin_left = 207.676
+margin_top = 48.0363
+margin_right = 255.676
+margin_bottom = 96.0363
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BTN_Play" type="TextureButton" parent="Control/Background"]
+margin_left = 208.444
+margin_top = 96.0721
+margin_right = 256.444
+margin_bottom = 144.072
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Kitty" type="AnimatedSprite" parent="Control"]
+position = Vector2( 128.431, 85.9908 )
+frames = SubResource( 1 )
+frame = 2
+playing = true
