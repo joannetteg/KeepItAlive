@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Resources/Mockups/Mockup.png" type="Texture" id=1]
+
+[node name="Mockup" type="Sprite"]
+position = Vector2( 128, 72 )
+texture = ExtResource( 1 )
