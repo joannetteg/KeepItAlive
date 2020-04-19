@@ -67,7 +67,14 @@ onready var btn_Start_Game = get_node("Background/PlayButton")
 onready var stages_Timer = get_node("../StagesUnlock")
 onready var cooldown_Timer = get_node("../Cooldown")
 onready var spr_Kitty = get_node("Kitty")
+
 onready var uiAnimation = get_node("../UIAnimation")
+onready var uiAnimationThirst = get_node("../UIAnimationThirst")
+onready var uiAnimationHunger = get_node("../UIAnimationHunger")
+onready var uiAnimationToilet = get_node("../UIAnimationToilet")
+onready var uiAnimationTeach = get_node("../UIAnimationTeach")
+onready var uiAnimationPet = get_node("../UIAnimationPet")
+onready var uiAnimationPlay = get_node("../UIAnimationPlay")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -112,6 +119,29 @@ func _process(delta):
 		
 	elif gameState == gameStates.dead:
 		_on_Cooldown()
+		spr_Kitty.visible = false
+		bar_Life.visible = false
+		bar_Happy.visible = false
+		
+		stage1 = false
+		stage2 = false
+		stage3 = false
+		stage4 = false
+		stage5 = false
+		stage6 = false
+		
+		btn_Start_Game.disabled = false
+		btn_Start_Game.visible = true
+		
+		currentLife = MAX_LIFE
+		currentHappiness = MAX_HAPPINESS
+		
+		currentThirstValue = 0
+		currentHungerValue = 0
+		currentToiletValue = 0
+		currentTeachValue = 0
+		currentPetValue = 0
+		currentPlayValue = 0
 		
 	if stage1:
 		currentThirstValue -= 1 * (delta * fast)
@@ -142,15 +172,15 @@ func _process(delta):
 	_update_Bars()
 	
 	if currentTeachValue <= 0 && stage4:
-		print("Kitty ran away and never came back !")
+		print("You didn't teach Kitty well, he ran away and never came back !")
 		gameState = gameStates.dead
 		
-	if currentLife <= 0:
+	if currentLife <= 0 && stage1:
 		print("You didn't keep Kitty alive !")
 		gameState = gameStates.dead
 		
-	if currentHappiness <= 0:
-		print("Kitty ran away and never came back !")
+	if currentHappiness <= 0 && stage1:
+		print("Kitty wasn't happy, he ran away and never came back !")
 		gameState = gameStates.dead
 		
 func _update_Bars():
@@ -163,6 +193,48 @@ func _update_Bars():
 	
 	bar_Life_Progress.value = currentLife
 	bar_Happy_Progress.value = currentHappiness
+	
+	if currentThirstValue > 28:
+		uiAnimationThirst.play("thirstGreen")
+	elif currentThirstValue < 28 && currentThirstValue > 16:
+		uiAnimationThirst.play("thirstYellow")
+	else:
+		uiAnimationThirst.play("thirstRed")
+		
+	if currentHungerValue > 28:
+		uiAnimationHunger.play("hungerGreen")
+	elif currentHungerValue < 28 && currentHungerValue > 16:
+		uiAnimationHunger.play("hungerYellow")
+	else:
+		uiAnimationHunger.play("hungerRed")
+		
+	if currentToiletValue > 28:
+		uiAnimationToilet.play("toiletGreen")
+	elif currentToiletValue < 28 && currentToiletValue > 16:
+		uiAnimationToilet.play("toiletYellow")
+	else:
+		uiAnimationToilet.play("toiletRed")
+		
+	if currentTeachValue > 28:
+		uiAnimationTeach.play("teachGreen")
+	elif currentTeachValue < 28 && currentTeachValue > 16:
+		uiAnimationTeach.play("teachYellow")
+	else:
+		uiAnimationTeach.play("teachRed")
+		
+	if currentPetValue > 28:
+		uiAnimationPet.play("petGreen")
+	elif currentPetValue < 28 && currentPetValue > 16:
+		uiAnimationPet.play("petYellow")
+	else:
+		uiAnimationPet.play("petRed")
+		
+	if currentPlayValue > 28:
+		uiAnimationPlay.play("playGreen")
+	elif currentPlayValue < 28 && currentPlayValue > 16:
+		uiAnimationPlay.play("playYellow")
+	else:
+		uiAnimationPlay.play("playRed")
 		
 func _on_Cooldown():
 	on_Cooldown = true
@@ -228,12 +300,12 @@ func _on_BTN_Play_pressed():
 
 func _on_BTN_Pet_pressed():
 	currentPetValue = MAX_VALUE
-	cooldown_Timer.set("wait_time", 2)
+	cooldown_Timer.set("wait_time", 1)
 	_on_Cooldown()
 
 func _on_BTN_Teach_pressed():
 	currentTeachValue = MAX_VALUE
-	cooldown_Timer.set("wait_time", 2)
+	cooldown_Timer.set("wait_time", 3)
 	_on_Cooldown()
 
 func _on_BTN_Toilet_pressed():
@@ -248,7 +320,7 @@ func _on_BTN_Hunger_pressed():
 
 func _on_BTN_Thirst_pressed():
 	currentThirstValue = MAX_VALUE
-	cooldown_Timer.set("wait_time", 2)
+	cooldown_Timer.set("wait_time", 1)
 	_on_Cooldown()
 
 func _on_PlayButton_pressed():
