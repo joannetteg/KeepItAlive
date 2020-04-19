@@ -5,6 +5,8 @@ const MAX_LIFE = 100
 const MAX_HAPPINESS = 100
 
 var gameTimer = 0
+var highScore = 0
+var flavorText = "dead"
 
 var currentThirstValue = 0
 var currentHungerValue = 0
@@ -70,6 +72,8 @@ onready var btn_Teach = get_node("Background/BTN_Teach")
 onready var btn_Pet = get_node("Background/BTN_Pet")
 onready var btn_Play = get_node("Background/BTN_Play")
 onready var btn_Start_Game = get_node("Background/PlayButton")
+onready var score = get_node("Background/PlayButton/Score")
+onready var flavorTextNode = get_node("Background/PlayButton/FlavorText")
 
 onready var stages_Timer = get_node("../StagesUnlock")
 onready var cooldown_Timer = get_node("../Cooldown")
@@ -77,12 +81,23 @@ onready var spr_Kitty = get_node("Kitty")
 
 onready var uiAnimation = get_node("../UIAnimation")
 onready var uiAnimationThirst = get_node("../UIAnimationThirst")
+onready var uiFlashThirst = get_node("../UIFlashThirst")
 onready var uiAnimationHunger = get_node("../UIAnimationHunger")
+onready var uiFlashHunger = get_node("../UIFlashHunger")
 onready var uiAnimationToilet = get_node("../UIAnimationToilet")
+onready var uiFlashToilet = get_node("../UIFlashToilet")
 onready var uiAnimationTeach = get_node("../UIAnimationTeach")
+onready var uiFlashTeach = get_node("../UIFlashTeach")
 onready var uiAnimationPet = get_node("../UIAnimationPet")
+onready var uiFlashPet = get_node("../UIFlashPet")
 onready var uiAnimationPlay = get_node("../UIAnimationPlay")
+onready var uiFlashPlay = get_node("../UIFlashPlay")
 onready var cameraShake = get_node("../CameraShake")
+onready var pressStart = get_node("../PressStart")
+onready var lifeBarFlash = get_node("../LifeBarFlash")
+onready var happyBarFlash = get_node("../HappyBarFlash")
+onready var particles = get_node("../ActionPartAnim")
+onready var soundPlayer = get_node("../SoundPlayer")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -92,10 +107,15 @@ func _ready():
 func _process(delta):
 	#print(stages_Timer.time_left)
 	
+	if round(gameTimer) > round(highScore):
+		highScore = gameTimer
+		score.text = str(round(highScore))
+	
 	if gameState == gameStates.menu:
 		spr_Kitty.visible = false
 		bar_Life.visible = false
 		bar_Happy.visible = false
+		pressStart.play("flashBot")
 		
 	elif gameState == gameStates.stage1:
 		_init_stage1()
@@ -130,6 +150,9 @@ func _process(delta):
 		spr_Kitty.visible = false
 		bar_Life.visible = false
 		bar_Happy.visible = false
+		score.visible = true
+		flavorTextNode.visible = true
+		pressStart.play("flashTop")
 		
 		stage1 = false
 		stage2 = false
@@ -184,35 +207,55 @@ func _process(delta):
 	
 	if currentTeachValue <= 0 && stage4:
 		print("You didn't teach Kitty well, he ran away and never came back !")
+		flavorTextNode.text = "You didn't teach Kitty well, he ran away and never came back !"
 		gameState = gameStates.dead
 		
 	if currentLife <= 0 && stage1:
 		print("You didn't keep Kitty alive !")
+		flavorTextNode.text = "You didn't keep Kitty alive !"
 		gameState = gameStates.dead
 		
 	if currentHappiness <= 0 && stage1:
 		print("Kitty wasn't happy, he ran away and never came back !")
+		flavorTextNode.text = "Kitty wasn't happy, he ran away and never came back !"
 		gameState = gameStates.dead
 		
 func _camera_Shake():
 	if !cameraShaked1 && currentThirstValue < 0:
 			cameraShake.play("camShake")
 			cameraShaked1 = true
+			uiFlashThirst.play("flash")
+			lifeBarFlash.play("flash")
+			soundPlayer.play("playHit")
 	if !cameraShaked2 && currentHungerValue < 0:
 			cameraShake.play("camShake")
 			cameraShaked2 = true
+			uiFlashHunger.play("flash")
+			lifeBarFlash.play("flash")
+			soundPlayer.play("playHit")
 	if !cameraShaked3 && currentToiletValue < 0:
 			cameraShake.play("camShake")
 			cameraShaked3 = true
+			uiFlashToilet.play("flash")
+			lifeBarFlash.play("flash")
+			soundPlayer.play("playHit")
 	if !cameraShaked4 && currentTeachValue < 0:
 			cameraShake.play("camShake")
 			cameraShaked4 = true
+			uiFlashTeach.play("flash")
+			soundPlayer.play("playHit")
 	if !cameraShaked5 && currentPetValue < 0:
 			cameraShake.play("camShake")
 			cameraShaked5 = true
+			uiFlashPet.play("flash")
+			happyBarFlash.play("flash")
+			soundPlayer.play("playHit")
 	if !cameraShaked6 && currentPlayValue < 0:
 			cameraShake.play("camShake")
 			cameraShaked6 = true
+			uiFlashPlay.play("flash")
+			happyBarFlash.play("flash")
+			soundPlayer.play("playHit")
 		
 func _update_Bars():
 	bar_Thirst.value = currentThirstValue
@@ -329,36 +372,48 @@ func _on_BTN_Play_pressed():
 	cooldown_Timer.set("wait_time", 2)
 	_on_Cooldown()
 	cameraShaked6 = false
+	particles.play("play")
+	soundPlayer.play("playPowerUp")
 
 func _on_BTN_Pet_pressed():
 	currentPetValue = MAX_VALUE
 	cooldown_Timer.set("wait_time", 1)
 	_on_Cooldown()
 	cameraShaked5 = false
+	particles.play("pet")
+	soundPlayer.play("playPowerUp")
 
 func _on_BTN_Teach_pressed():
 	currentTeachValue = MAX_VALUE
 	cooldown_Timer.set("wait_time", 3)
 	_on_Cooldown()
 	cameraShaked4 = false
+	particles.play("teach")
+	soundPlayer.play("playPowerUp")
 
 func _on_BTN_Toilet_pressed():
 	currentToiletValue = MAX_VALUE
 	cooldown_Timer.set("wait_time", 2)
 	_on_Cooldown()
 	cameraShaked3 = false
+	particles.play("toilet")
+	soundPlayer.play("playPowerUp")
 
 func _on_BTN_Hunger_pressed():
 	currentHungerValue = MAX_VALUE
 	cooldown_Timer.set("wait_time", 2)
 	_on_Cooldown()
 	cameraShaked2 = false
+	particles.play("hunger")
+	soundPlayer.play("playPowerUp")
 
 func _on_BTN_Thirst_pressed():
 	currentThirstValue = MAX_VALUE
 	cooldown_Timer.set("wait_time", 1)
 	_on_Cooldown()
 	cameraShaked1 = false
+	particles.play("thirst")
+	soundPlayer.play("playPowerUp")
 
 func _on_PlayButton_pressed():
 	stages_Timer.start()

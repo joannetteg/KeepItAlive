@@ -1,4 +1,4 @@
-[gd_scene load_steps=193 format=2]
+[gd_scene load_steps=229 format=2]
 
 [ext_resource path="res://Resources/Mockups/UI/Background.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Mockups/UI/BTN_Play_up.png" type="Texture" id=2]
@@ -50,6 +50,182 @@
 [ext_resource path="res://Resources/Mockups/UI/TitleCard/TitleCard2.png" type="Texture" id=48]
 [ext_resource path="res://Resources/Mockups/UI/TitleCard/TitleCard11.png" type="Texture" id=49]
 [ext_resource path="res://Resources/Mockups/UI/TitleCard/TitleCard10.png" type="Texture" id=50]
+[ext_resource path="res://Resources/Mockups/UI/Font/Score.tres" type="DynamicFont" id=51]
+[ext_resource path="res://Resources/Mockups/UI/BTN_Flash.png" type="Texture" id=52]
+[ext_resource path="res://Resources/Mockups/UI/fx_icon_pet.png" type="Texture" id=53]
+[ext_resource path="res://Resources/Mockups/UI/fx_icon_teach.png" type="Texture" id=54]
+[ext_resource path="res://Resources/Mockups/UI/fx_icon_hunger.png" type="Texture" id=55]
+[ext_resource path="res://Resources/Mockups/UI/fx_icon_play.png" type="Texture" id=56]
+[ext_resource path="res://Resources/Mockups/UI/fx_icon_thirst.png" type="Texture" id=57]
+[ext_resource path="res://Resources/Mockups/UI/fx_icon_toilet.png" type="Texture" id=58]
+[ext_resource path="res://Resources/Sounds/hit.wav" type="AudioStream" id=59]
+[ext_resource path="res://Resources/Sounds/powerup.wav" type="AudioStream" id=60]
+
+[sub_resource type="Animation" id=162]
+resource_name = "hunger"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/ActionParticles:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 55 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/ActionParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=163]
+resource_name = "pet"
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/ActionParticles:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 53 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/ActionParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=164]
+resource_name = "play"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/ActionParticles:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 56 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/ActionParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=165]
+resource_name = "teach"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/ActionParticles:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 54 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/ActionParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=161]
+resource_name = "thirst"
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/ActionParticles:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 57 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/ActionParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=166]
+resource_name = "toilet"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/ActionParticles:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 58 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/ActionParticles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [sub_resource type="Animation" id=140]
 resource_name = "camShake"
@@ -67,8 +243,96 @@ tracks/0/keys = {
 "values": [ Vector2( -0.473343, 0.315559 ), Vector2( -1.473, 0.316 ), Vector2( 1.473, 0.316 ), Vector2( -0.473343, 0.315559 ) ]
 }
 
-[sub_resource type="Animation" id=141]
+[sub_resource type="Animation" id=159]
 resource_name = "flash"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Background/BAR_Life/Progress:texture_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 32 ), ExtResource( 28 ), ExtResource( 28 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/Background/BAR_Life/ICN:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 31 ), ExtResource( 24 ), ExtResource( 24 ) ]
+}
+
+[sub_resource type="Animation" id=160]
+resource_name = "flash"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Background/BAR_Happy/Progress:texture_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 32 ), ExtResource( 25 ), ExtResource( 25 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/Background/BAR_Happy/ICN:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 30 ), ExtResource( 26 ), ExtResource( 26 ) ]
+}
+
+[sub_resource type="Animation" id=143]
+resource_name = "Top"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Background/PlayButton/PressStart:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 86.4733, 8.68444 ) ]
+}
+
+[sub_resource type="Animation" id=144]
+resource_name = "bottom"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Background/PlayButton/PressStart:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 86.4733, 114.684 ) ]
+}
+
+[sub_resource type="Animation" id=145]
+resource_name = "flashBot"
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -82,6 +346,47 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ ExtResource( 36 ), null, ExtResource( 36 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/Background/PlayButton/PressStart:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 86.473, 114.684 ) ]
+}
+
+[sub_resource type="Animation" id=141]
+resource_name = "flashTop"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Background/PlayButton/PressStart:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 36 ), null, ExtResource( 36 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/Background/PlayButton/PressStart:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 86.4733, 8.68444 ) ]
 }
 
 [sub_resource type="Animation" id=1]
@@ -435,6 +740,34 @@ tracks/0/keys = {
 "values": [ ExtResource( 34 ) ]
 }
 
+[sub_resource type="Animation" id=146]
+resource_name = "flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Background/BTN_Thirst:texture_normal")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 5 ), ExtResource( 52 ), ExtResource( 5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/Background/BTN_Thirst:texture_disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 6 ), ExtResource( 52 ), ExtResource( 6 ) ]
+}
+
 [sub_resource type="Animation" id=23]
 resource_name = "thirstGreen"
 length = 0.1
@@ -516,6 +849,130 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=28]
+resource_name = "toiletYellow"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Background/BAR_Toilet:texture_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 34 ) ]
+}
+
+[sub_resource type="Animation" id=147]
+resource_name = "flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Background/BTN_Thirst:texture_normal")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 5 ), ExtResource( 52 ), ExtResource( 5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/Background/BTN_Thirst:texture_disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 6 ), ExtResource( 52 ), ExtResource( 6 ) ]
+}
+
+[sub_resource type="Animation" id=148]
+resource_name = "thirstGreen"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Background/BAR_Thirst:texture_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 14 ) ]
+}
+
+[sub_resource type="Animation" id=149]
+resource_name = "thirstRed"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Background/BAR_Thirst:texture_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 35 ) ]
+}
+
+[sub_resource type="Animation" id=150]
+resource_name = "thirstYellow"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Background/BAR_Thirst:texture_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 34 ) ]
+}
+
+[sub_resource type="Animation" id=151]
+resource_name = "toiletGreen"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Background/BAR_Toilet:texture_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 14 ) ]
+}
+
+[sub_resource type="Animation" id=152]
+resource_name = "toiletRed"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Background/BAR_Toilet:texture_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 35 ) ]
+}
+
+[sub_resource type="Animation" id=153]
 resource_name = "toiletYellow"
 length = 0.1
 tracks/0/type = "value"
@@ -883,6 +1340,34 @@ tracks/0/keys = {
 "values": [ ExtResource( 34 ) ]
 }
 
+[sub_resource type="Animation" id=154]
+resource_name = "flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Background/BTN_Hunger:texture_normal")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 12 ), ExtResource( 52 ), ExtResource( 12 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/Background/BTN_Hunger:texture_disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 7 ), ExtResource( 52 ), ExtResource( 7 ) ]
+}
+
 [sub_resource type="Animation" id=51]
 resource_name = "flashHappyBar"
 length = 0.2
@@ -1233,6 +1718,34 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ ExtResource( 34 ) ]
+}
+
+[sub_resource type="Animation" id=155]
+resource_name = "flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Background/BTN_Toilet:texture_normal")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ), ExtResource( 52 ), ExtResource( 4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/Background/BTN_Toilet:texture_disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 10 ), ExtResource( 52 ), ExtResource( 10 ) ]
 }
 
 [sub_resource type="Animation" id=73]
@@ -1587,6 +2100,34 @@ tracks/0/keys = {
 "values": [ ExtResource( 34 ) ]
 }
 
+[sub_resource type="Animation" id=156]
+resource_name = "flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Background/BTN_Teach:texture_disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 13 ), ExtResource( 52 ), ExtResource( 13 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/Background/BTN_Teach:texture_normal")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 8 ), ExtResource( 52 ), ExtResource( 8 ) ]
+}
+
 [sub_resource type="Animation" id=95]
 resource_name = "flashHappyBar"
 length = 0.2
@@ -1937,6 +2478,34 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ ExtResource( 34 ) ]
+}
+
+[sub_resource type="Animation" id=157]
+resource_name = "flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Background/BTN_Pet:texture_normal")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 9 ), ExtResource( 52 ), ExtResource( 9 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/Background/BTN_Pet:texture_disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 11 ), ExtResource( 52 ), ExtResource( 11 ) ]
 }
 
 [sub_resource type="Animation" id=117]
@@ -2291,6 +2860,34 @@ tracks/0/keys = {
 "values": [ ExtResource( 34 ) ]
 }
 
+[sub_resource type="Animation" id=158]
+resource_name = "flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Background/BTN_Play:texture_normal")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ), ExtResource( 52 ), ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/Background/BTN_Play:texture_disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ), ExtResource( 52 ), ExtResource( 3 ) ]
+}
+
 [sub_resource type="SpriteFrames" id=142]
 animations = [ {
 "frames": [ ExtResource( 37 ), ExtResource( 48 ), ExtResource( 39 ), ExtResource( 42 ), ExtResource( 46 ), ExtResource( 41 ), ExtResource( 47 ), ExtResource( 45 ), ExtResource( 43 ), ExtResource( 50 ), ExtResource( 49 ), ExtResource( 44 ), ExtResource( 38 ), ExtResource( 40 ) ],
@@ -2307,6 +2904,38 @@ animations = [ {
 "speed": 10.0
 } ]
 
+[sub_resource type="Animation" id=167]
+resource_name = "playHit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Hit:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=168]
+resource_name = "playPowerUp"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Powerup:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
 [node name="Main" type="Node2D"]
 
 [node name="StagesUnlock" type="Timer" parent="."]
@@ -2317,12 +2946,29 @@ one_shot = true
 wait_time = 2.0
 one_shot = true
 
+[node name="ActionPartAnim" type="AnimationPlayer" parent="."]
+anims/hunger = SubResource( 162 )
+anims/pet = SubResource( 163 )
+anims/play = SubResource( 164 )
+anims/teach = SubResource( 165 )
+anims/thirst = SubResource( 161 )
+anims/toilet = SubResource( 166 )
+
 [node name="CameraShake" type="AnimationPlayer" parent="."]
 anims/camShake = SubResource( 140 )
 
+[node name="LifeBarFlash" type="AnimationPlayer" parent="."]
+anims/flash = SubResource( 159 )
+
+[node name="HappyBarFlash" type="AnimationPlayer" parent="."]
+anims/flash = SubResource( 160 )
+
 [node name="PressStart" type="AnimationPlayer" parent="."]
-autoplay = "flash"
-anims/flash = SubResource( 141 )
+autoplay = "flashBot"
+anims/Top = SubResource( 143 )
+anims/bottom = SubResource( 144 )
+anims/flashBot = SubResource( 145 )
+anims/flashTop = SubResource( 141 )
 
 [node name="UIAnimation" type="AnimationPlayer" parent="."]
 anims/flashHappyBar = SubResource( 1 )
@@ -2349,12 +2995,22 @@ anims/toiletRed = SubResource( 21 )
 anims/toiletYellow = SubResource( 22 )
 
 [node name="UIAnimationThirst" type="AnimationPlayer" parent="."]
+anims/flash = SubResource( 146 )
 anims/thirstGreen = SubResource( 23 )
 anims/thirstRed = SubResource( 24 )
 anims/thirstYellow = SubResource( 25 )
 anims/toiletGreen = SubResource( 26 )
 anims/toiletRed = SubResource( 27 )
 anims/toiletYellow = SubResource( 28 )
+
+[node name="UIFlashThirst" type="AnimationPlayer" parent="."]
+anims/flash = SubResource( 147 )
+anims/thirstGreen = SubResource( 148 )
+anims/thirstRed = SubResource( 149 )
+anims/thirstYellow = SubResource( 150 )
+anims/toiletGreen = SubResource( 151 )
+anims/toiletRed = SubResource( 152 )
+anims/toiletYellow = SubResource( 153 )
 
 [node name="UIAnimationHunger" type="AnimationPlayer" parent="."]
 anims/flashHappyBar = SubResource( 29 )
@@ -2380,6 +3036,9 @@ anims/toiletGreen = SubResource( 48 )
 anims/toiletRed = SubResource( 49 )
 anims/toiletYellow = SubResource( 50 )
 
+[node name="UIFlashHunger" type="AnimationPlayer" parent="."]
+anims/flash = SubResource( 154 )
+
 [node name="UIAnimationToilet" type="AnimationPlayer" parent="."]
 anims/flashHappyBar = SubResource( 51 )
 anims/flashHappyIcon = SubResource( 52 )
@@ -2403,6 +3062,9 @@ anims/thirstYellow = SubResource( 69 )
 anims/toiletGreen = SubResource( 70 )
 anims/toiletRed = SubResource( 71 )
 anims/toiletYellow = SubResource( 72 )
+
+[node name="UIFlashToilet" type="AnimationPlayer" parent="."]
+anims/flash = SubResource( 155 )
 
 [node name="UIAnimationTeach" type="AnimationPlayer" parent="."]
 anims/flashHappyBar = SubResource( 73 )
@@ -2428,6 +3090,9 @@ anims/toiletGreen = SubResource( 92 )
 anims/toiletRed = SubResource( 93 )
 anims/toiletYellow = SubResource( 94 )
 
+[node name="UIFlashTeach" type="AnimationPlayer" parent="."]
+anims/flash = SubResource( 156 )
+
 [node name="UIAnimationPet" type="AnimationPlayer" parent="."]
 anims/flashHappyBar = SubResource( 95 )
 anims/flashHappyIcon = SubResource( 96 )
@@ -2452,6 +3117,9 @@ anims/toiletGreen = SubResource( 114 )
 anims/toiletRed = SubResource( 115 )
 anims/toiletYellow = SubResource( 116 )
 
+[node name="UIFlashPet" type="AnimationPlayer" parent="."]
+anims/flash = SubResource( 157 )
+
 [node name="UIAnimationPlay" type="AnimationPlayer" parent="."]
 anims/flashHappyBar = SubResource( 117 )
 anims/flashHappyIcon = SubResource( 118 )
@@ -2475,6 +3143,9 @@ anims/thirstYellow = SubResource( 135 )
 anims/toiletGreen = SubResource( 136 )
 anims/toiletRed = SubResource( 137 )
 anims/toiletYellow = SubResource( 138 )
+
+[node name="UIFlashPlay" type="AnimationPlayer" parent="."]
+anims/flash = SubResource( 158 )
 
 [node name="UI" type="Control" parent="."]
 anchor_right = 1.0
@@ -2528,20 +3199,59 @@ __meta__ = {
 
 [node name="PressStart" type="TextureRect" parent="UI/Background/PlayButton"]
 margin_left = 86.4733
-margin_top = 108.684
+margin_top = 8.68444
 margin_right = 165.473
-margin_bottom = 148.684
+margin_bottom = 48.6845
 texture = ExtResource( 36 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TitleCard" type="AnimatedSprite" parent="UI/Background/PlayButton"]
-position = Vector2( 115.473, 52.6844 )
+position = Vector2( 94.4733, 52.6844 )
 frames = SubResource( 142 )
-frame = 7
+frame = 12
 speed_scale = 2.0
 playing = true
+
+[node name="Score" type="Label" parent="UI/Background/PlayButton"]
+visible = false
+margin_left = 151.473
+margin_top = 46.6844
+margin_right = 191.473
+margin_bottom = 66.6844
+custom_fonts/font = ExtResource( 51 )
+custom_colors/font_color = Color( 0.164706, 0, 0, 1 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Background/PlayButton/Score"]
+margin_left = -20.0
+margin_top = -16.0
+margin_right = 44.0
+margin_bottom = 4.0
+custom_fonts/font = ExtResource( 51 )
+custom_colors/font_color = Color( 0.164706, 0, 0, 1 )
+text = "Best Time"
+
+[node name="FlavorText" type="Label" parent="UI/Background/PlayButton"]
+visible = false
+margin_left = 57.0
+margin_top = 82.0
+margin_right = 193.0
+margin_bottom = 132.0
+custom_fonts/font = ExtResource( 51 )
+custom_colors/font_color = Color( 0.164706, 0, 0, 1 )
+text = "You didn't teach Kitty well, he ran away and never came back !"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="BAR_Thirst" type="TextureProgress" parent="UI/Background"]
 margin_left = 0.342915
@@ -2550,7 +3260,7 @@ margin_right = 48.3429
 margin_bottom = 46.7066
 max_value = 48.0
 texture_under = ExtResource( 33 )
-texture_progress = ExtResource( 14 )
+texture_progress = ExtResource( 34 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -2574,7 +3284,7 @@ margin_right = 48.139
 margin_bottom = 142.951
 max_value = 48.0
 texture_under = ExtResource( 33 )
-texture_progress = ExtResource( 35 )
+texture_progress = ExtResource( 34 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -2641,6 +3351,9 @@ disabled = true
 texture_normal = ExtResource( 12 )
 texture_pressed = ExtResource( 7 )
 texture_disabled = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="BTN_Toilet" type="TextureButton" parent="UI/Background"]
 margin_left = 0.473343
@@ -2759,10 +3472,32 @@ __meta__ = {
 }
 
 [node name="Kitty" type="AnimatedSprite" parent="UI"]
-position = Vector2( 128, 92 )
+position = Vector2( 127, 92 )
 frames = SubResource( 139 )
-frame = 6
+frame = 5
 playing = true
+
+[node name="ActionParticles" type="CPUParticles2D" parent="UI"]
+position = Vector2( 127, 60 )
+emitting = false
+amount = 5
+texture = ExtResource( 56 )
+direction = Vector2( 0, -1 )
+spread = 29.52
+initial_velocity = 75.27
+initial_velocity_random = 0.1
+
+[node name="Powerup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 60 )
+volume_db = -1.0
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 59 )
+volume_db = -5.0
+
+[node name="SoundPlayer" type="AnimationPlayer" parent="."]
+anims/playHit = SubResource( 167 )
+anims/playPowerUp = SubResource( 168 )
 [connection signal="timeout" from="Cooldown" to="UI" method="_on_Cooldown_timeout"]
 [connection signal="pressed" from="UI/Background/PlayButton" to="UI" method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="UI/Background/BTN_Thirst" to="UI" method="_on_BTN_Thirst_pressed"]
