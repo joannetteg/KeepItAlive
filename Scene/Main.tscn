@@ -111,7 +111,10 @@ animations = [ {
 [node name="StagesUnlock" type="Timer" parent="."]
 wait_time = 60.0
 one_shot = true
-autostart = true
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 
 [node name="UIAnimation" type="AnimationPlayer" parent="."]
 anims/flashHappyBar = SubResource( 2 )
@@ -145,6 +148,17 @@ margin_top = -0.315559
 margin_right = 208.473
 margin_bottom = 143.684
 texture = ExtResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayButton" type="TextureButton" parent="UI/Background"]
+margin_left = 104.0
+margin_top = 45.0
+margin_right = 152.0
+margin_bottom = 93.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -367,8 +381,10 @@ __meta__ = {
 [node name="Kitty" type="AnimatedSprite" parent="UI"]
 position = Vector2( 128, 92 )
 frames = SubResource( 1 )
-frame = 2
+frame = 1
 playing = true
+[connection signal="timeout" from="Cooldown" to="UI" method="_on_Cooldown_timeout"]
+[connection signal="pressed" from="UI/Background/PlayButton" to="UI" method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="UI/Background/BTN_Thirst" to="UI" method="_on_BTN_Thirst_pressed"]
 [connection signal="pressed" from="UI/Background/BTN_Thirst" to="UI" method="_on_BTN_Thist_pressed"]
 [connection signal="pressed" from="UI/Background/BTN_Hunger" to="UI" method="_on_BTN_Hunger_pressed"]
