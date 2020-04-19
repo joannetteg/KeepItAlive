@@ -42,6 +42,13 @@ enum gameStates{
 var gameState = gameStates.menu
 var on_Cooldown = false
 
+var cameraShaked1 = false
+var cameraShaked2 = false
+var cameraShaked3 = false
+var cameraShaked4 = false
+var cameraShaked5 = false
+var cameraShaked6 = false
+
 onready var bar_Thirst = get_node("Background/BAR_Thirst")
 onready var bar_Hunger = get_node("Background/BAR_Hunger")
 onready var bar_Toilet = get_node("Background/BAR_Toilet")
@@ -75,6 +82,7 @@ onready var uiAnimationToilet = get_node("../UIAnimationToilet")
 onready var uiAnimationTeach = get_node("../UIAnimationTeach")
 onready var uiAnimationPet = get_node("../UIAnimationPet")
 onready var uiAnimationPlay = get_node("../UIAnimationPlay")
+onready var cameraShake = get_node("../CameraShake")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -163,11 +171,14 @@ func _process(delta):
 	if stage6:
 		currentPlayValue -= 1 * (delta * medium)
 	
+	#Apply Damage
 	if (currentThirstValue <= 0 && stage1) || (currentHungerValue <= 0 && stage2) || (currentToiletValue <= 0 && stage3):
 		currentLife -= 1 * (delta * medium)
+		_camera_Shake()
 		
 	if (currentPetValue <= 0 && stage5) || (currentPlayValue <= 0 && stage6):
 		currentHappiness -= 1 * (delta * medium)
+		_camera_Shake()
 		
 	_update_Bars()
 	
@@ -182,6 +193,26 @@ func _process(delta):
 	if currentHappiness <= 0 && stage1:
 		print("Kitty wasn't happy, he ran away and never came back !")
 		gameState = gameStates.dead
+		
+func _camera_Shake():
+	if !cameraShaked1 && currentThirstValue < 0:
+			cameraShake.play("camShake")
+			cameraShaked1 = true
+	if !cameraShaked2 && currentHungerValue < 0:
+			cameraShake.play("camShake")
+			cameraShaked2 = true
+	if !cameraShaked3 && currentToiletValue < 0:
+			cameraShake.play("camShake")
+			cameraShaked3 = true
+	if !cameraShaked4 && currentTeachValue < 0:
+			cameraShake.play("camShake")
+			cameraShaked4 = true
+	if !cameraShaked5 && currentPetValue < 0:
+			cameraShake.play("camShake")
+			cameraShaked5 = true
+	if !cameraShaked6 && currentPlayValue < 0:
+			cameraShake.play("camShake")
+			cameraShaked6 = true
 		
 func _update_Bars():
 	bar_Thirst.value = currentThirstValue
@@ -297,31 +328,37 @@ func _on_BTN_Play_pressed():
 	currentPlayValue = MAX_VALUE
 	cooldown_Timer.set("wait_time", 2)
 	_on_Cooldown()
+	cameraShaked6 = false
 
 func _on_BTN_Pet_pressed():
 	currentPetValue = MAX_VALUE
 	cooldown_Timer.set("wait_time", 1)
 	_on_Cooldown()
+	cameraShaked5 = false
 
 func _on_BTN_Teach_pressed():
 	currentTeachValue = MAX_VALUE
 	cooldown_Timer.set("wait_time", 3)
 	_on_Cooldown()
+	cameraShaked4 = false
 
 func _on_BTN_Toilet_pressed():
 	currentToiletValue = MAX_VALUE
 	cooldown_Timer.set("wait_time", 2)
 	_on_Cooldown()
+	cameraShaked3 = false
 
 func _on_BTN_Hunger_pressed():
 	currentHungerValue = MAX_VALUE
 	cooldown_Timer.set("wait_time", 2)
 	_on_Cooldown()
+	cameraShaked2 = false
 
 func _on_BTN_Thirst_pressed():
 	currentThirstValue = MAX_VALUE
 	cooldown_Timer.set("wait_time", 1)
 	_on_Cooldown()
+	cameraShaked1 = false
 
 func _on_PlayButton_pressed():
 	stages_Timer.start()
