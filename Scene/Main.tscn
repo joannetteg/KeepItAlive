@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Resources/Mockups/UI/Background.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Mockups/UI/BTN_Play_up.png" type="Texture" id=2]
@@ -22,6 +22,81 @@
 [ext_resource path="res://Resources/Mockups/CatAnimations/Idle/Kitty_idle_4.png" type="Texture" id=20]
 [ext_resource path="res://Resources/Mockups/CatAnimations/Idle/Kitty_idle_7.png" type="Texture" id=21]
 [ext_resource path="res://Scene/UI.gd" type="Script" id=22]
+[ext_resource path="res://Resources/Mockups/UI/Background_border.png" type="Texture" id=23]
+[ext_resource path="res://Resources/Mockups/UI/ui_icons_cross.png" type="Texture" id=24]
+[ext_resource path="res://Resources/Mockups/UI/ui_bar_happiness.png" type="Texture" id=25]
+[ext_resource path="res://Resources/Mockups/UI/ui_icons_happy.png" type="Texture" id=26]
+[ext_resource path="res://Resources/Mockups/UI/ui_bar_border.png" type="Texture" id=27]
+[ext_resource path="res://Resources/Mockups/UI/ui_bar_life.png" type="Texture" id=28]
+[ext_resource path="res://Resources/Mockups/UI/ui_bar_back.png" type="Texture" id=29]
+[ext_resource path="res://Resources/Mockups/UI/ui_icons_happy_flash.png" type="Texture" id=30]
+[ext_resource path="res://Resources/Mockups/UI/ui_icons_cross_flash.png" type="Texture" id=31]
+[ext_resource path="res://Resources/Mockups/UI/ui_bar_flash.png" type="Texture" id=32]
+[ext_resource path="res://Resources/Mockups/UI/ui_bar_small_back.png" type="Texture" id=33]
+
+[sub_resource type="Animation" id=2]
+resource_name = "flashHappyBar"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Background/BAR_Happy/Progress:texture_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 25 ), ExtResource( 32 ), ExtResource( 25 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "flashHappyIcon"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Background/BAR_Happy/ICN:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 26 ), ExtResource( 30 ), ExtResource( 26 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "flashLifeBar"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Background/BAR_Life/Progress:texture_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 28 ), ExtResource( 32 ), ExtResource( 28 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "flashLifeIcon"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Background/BAR_Life/ICN:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 24 ), ExtResource( 31 ), ExtResource( 24 ) ]
+}
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -32,6 +107,17 @@ animations = [ {
 } ]
 
 [node name="Main" type="Node2D"]
+
+[node name="StagesUnlock" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+autostart = true
+
+[node name="UIAnimation" type="AnimationPlayer" parent="."]
+anims/flashHappyBar = SubResource( 2 )
+anims/flashHappyIcon = SubResource( 3 )
+anims/flashLifeBar = SubResource( 4 )
+anims/flashLifeIcon = SubResource( 5 )
 
 [node name="UI" type="Control" parent="."]
 anchor_right = 1.0
@@ -53,25 +139,35 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Border" type="TextureRect" parent="UI/Background"]
+margin_left = 48.4733
+margin_top = -0.315559
+margin_right = 208.473
+margin_bottom = 143.684
+texture = ExtResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="BAR_Thirst" type="TextureProgress" parent="UI/Background"]
 margin_left = 0.342915
-margin_top = 35.7066
+margin_top = 34.7066
 margin_right = 48.3429
-margin_bottom = 47.7066
+margin_bottom = 46.7066
 max_value = 48.0
-value = 48.0
+texture_under = ExtResource( 33 )
 texture_progress = ExtResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BAR_Hunger" type="TextureProgress" parent="UI/Background"]
-margin_left = 0.139008
-margin_top = 85.0521
+margin_left = 0.139
+margin_top = 83.287
 margin_right = 48.139
-margin_bottom = 97.0521
+margin_bottom = 95.287
 max_value = 48.0
-value = 48.0
+texture_under = ExtResource( 33 )
 texture_progress = ExtResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -79,11 +175,11 @@ __meta__ = {
 
 [node name="BAR_Toilet" type="TextureProgress" parent="UI/Background"]
 margin_left = 0.139008
-margin_top = 131.951
+margin_top = 130.951
 margin_right = 48.139
-margin_bottom = 143.951
+margin_bottom = 142.951
 max_value = 48.0
-value = 48.0
+texture_under = ExtResource( 33 )
 texture_progress = ExtResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -91,11 +187,11 @@ __meta__ = {
 
 [node name="BAR_Teach" type="TextureProgress" parent="UI/Background"]
 margin_left = 207.92
-margin_top = 37.5418
+margin_top = 35.338
 margin_right = 255.92
-margin_bottom = 49.5418
+margin_bottom = 47.338
 max_value = 48.0
-value = 48.0
+texture_under = ExtResource( 33 )
 texture_progress = ExtResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -103,11 +199,11 @@ __meta__ = {
 
 [node name="BAR_Pet" type="TextureProgress" parent="UI/Background"]
 margin_left = 208.328
-margin_top = 85.0521
+margin_top = 83.373
 margin_right = 256.328
-margin_bottom = 97.0521
+margin_bottom = 95.373
 max_value = 48.0
-value = 48.0
+texture_under = ExtResource( 33 )
 texture_progress = ExtResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -115,81 +211,168 @@ __meta__ = {
 
 [node name="BAR_Play" type="TextureProgress" parent="UI/Background"]
 margin_left = 208.428
-margin_top = 131.983
+margin_top = 130.983
 margin_right = 256.428
-margin_bottom = 143.983
+margin_bottom = 142.983
 max_value = 48.0
-value = 48.0
+texture_under = ExtResource( 33 )
 texture_progress = ExtResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BTN_Thist" type="TextureButton" parent="UI/Background"]
-margin_left = -0.157784
-margin_top = -0.157776
-margin_right = 47.8422
-margin_bottom = 47.8422
+[node name="BTN_Thirst" type="TextureButton" parent="UI/Background"]
+anchor_left = 0.002
+anchor_top = -0.002
+anchor_right = 0.002
+anchor_bottom = -0.002
+margin_left = -0.0386571
+margin_top = -0.0275594
+margin_right = 47.9613
+margin_bottom = 47.9724
+disabled = true
 texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 6 )
+texture_disabled = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BTN_Hunger" type="TextureButton" parent="UI/Background"]
-margin_left = 0.451874
-margin_top = 48.3502
-margin_right = 48.4519
-margin_bottom = 96.3502
+margin_left = 0.473343
+margin_top = 47.6844
+margin_right = 48.4733
+margin_bottom = 95.6844
+disabled = true
 texture_normal = ExtResource( 12 )
 texture_pressed = ExtResource( 7 )
+texture_disabled = ExtResource( 7 )
 
 [node name="BTN_Toilet" type="TextureButton" parent="UI/Background"]
-margin_left = 0.225929
-margin_top = 95.5707
-margin_right = 48.2259
-margin_bottom = 143.571
+margin_left = 0.473343
+margin_top = 95.6844
+margin_right = 48.4733
+margin_bottom = 143.684
+disabled = true
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 10 )
+texture_disabled = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BTN_Teach" type="TextureButton" parent="UI/Background"]
-margin_left = 208.313
-margin_top = 0.225933
-margin_right = 256.313
-margin_bottom = 48.2259
+margin_left = 208.473
+margin_top = -0.315559
+margin_right = 256.473
+margin_bottom = 47.6844
+disabled = true
 texture_normal = ExtResource( 8 )
 texture_pressed = ExtResource( 13 )
+texture_disabled = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BTN_Pet" type="TextureButton" parent="UI/Background"]
-margin_left = 207.676
-margin_top = 48.0363
-margin_right = 255.676
-margin_bottom = 96.0363
+margin_left = 208.473
+margin_top = 47.6844
+margin_right = 256.473
+margin_bottom = 95.6844
+disabled = true
 texture_normal = ExtResource( 9 )
 texture_pressed = ExtResource( 11 )
+texture_disabled = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BTN_Play" type="TextureButton" parent="UI/Background"]
-margin_left = 208.444
-margin_top = 96.0721
-margin_right = 256.444
-margin_bottom = 144.072
+margin_left = 208.473
+margin_top = 95.6844
+margin_right = 256.473
+margin_bottom = 143.684
+disabled = true
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 3 )
+texture_disabled = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BAR_Life" type="TextureRect" parent="UI/Background"]
+margin_left = 82.4733
+margin_top = 5.68444
+margin_right = 184.473
+margin_bottom = 12.6844
+texture = ExtResource( 27 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Progress" type="TextureProgress" parent="UI/Background/BAR_Life"]
+margin_left = 1.4
+margin_top = 0.7
+margin_right = 101.4
+margin_bottom = 5.7
+value = 100.0
+texture_under = ExtResource( 29 )
+texture_progress = ExtResource( 28 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ICN" type="TextureRect" parent="UI/Background/BAR_Life"]
+margin_left = -9.69611
+margin_top = -0.661098
+margin_right = -1.69611
+margin_bottom = 7.3389
+texture = ExtResource( 24 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BAR_Happy" type="TextureRect" parent="UI/Background"]
+margin_left = 82.4733
+margin_top = 14.6844
+margin_right = 184.473
+margin_bottom = 21.6844
+texture = ExtResource( 27 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Progress" type="TextureProgress" parent="UI/Background/BAR_Happy"]
+margin_left = 1.47333
+margin_top = 0.68444
+margin_right = 101.473
+margin_bottom = 5.68444
+value = 100.0
+texture_under = ExtResource( 29 )
+texture_progress = ExtResource( 25 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ICN" type="TextureRect" parent="UI/Background/BAR_Happy"]
+margin_left = -9.69611
+margin_top = -0.661098
+margin_right = -1.69611
+margin_bottom = 7.3389
+texture = ExtResource( 26 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Kitty" type="AnimatedSprite" parent="UI"]
-position = Vector2( 128.431, 85.9908 )
+position = Vector2( 128, 92 )
 frames = SubResource( 1 )
-frame = 6
+frame = 2
 playing = true
+[connection signal="pressed" from="UI/Background/BTN_Thirst" to="UI" method="_on_BTN_Thirst_pressed"]
+[connection signal="pressed" from="UI/Background/BTN_Thirst" to="UI" method="_on_BTN_Thist_pressed"]
+[connection signal="pressed" from="UI/Background/BTN_Hunger" to="UI" method="_on_BTN_Hunger_pressed"]
+[connection signal="pressed" from="UI/Background/BTN_Toilet" to="UI" method="_on_BTN_Toilet_pressed"]
+[connection signal="pressed" from="UI/Background/BTN_Teach" to="UI" method="_on_BTN_Teach_pressed"]
+[connection signal="pressed" from="UI/Background/BTN_Pet" to="UI" method="_on_BTN_Pet_pressed"]
+[connection signal="pressed" from="UI/Background/BTN_Play" to="UI" method="_on_BTN_Play_pressed"]
