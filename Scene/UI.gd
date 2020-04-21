@@ -182,6 +182,13 @@ func _process(delta):
 		stage4 = false
 		stage5 = false
 		stage6 = false
+		
+		cameraShaked1 = false
+		cameraShaked2 = false
+		cameraShaked3 = false
+		cameraShaked4 = false
+		cameraShaked5 = false
+		cameraShaked6 = false
 	
 		currentLife = MAX_LIFE
 		currentHappiness = MAX_HAPPINESS
@@ -374,6 +381,7 @@ func _off_Cooldown():
 func _init_stage1():
 	if !stage1:
 		stage1 = true
+		gameTimer = 0
 		kittyAnim.play("default")
 		currentThirstValue = MAX_VALUE
 		btn_Thirst.disabled = false
